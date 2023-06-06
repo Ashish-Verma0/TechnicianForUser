@@ -123,7 +123,7 @@ const Login = () => {
                     <p style={{ textAlign: "center" }}>OR</p>
                     <p>
                       <span>Don't have an account :-</span>{" "}
-                      <NavLink to="/">SignUp</NavLink>
+                      <NavLink to="/signup">SignUp</NavLink>
                     </p>
                   </form>
                 </div>

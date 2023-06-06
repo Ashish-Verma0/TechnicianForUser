@@ -13,9 +13,11 @@ import {
   MDBTypography,
 } from "mdb-react-ui-kit";
 import "./TechProfile.css";
+import BookingModel from "../bookTechnician/BookingModel";
 const TechProfile = () => {
   const location = useLocation();
   const [data, setData] = useState({});
+  const [model, setModel] = useState(false);
   const getProfile = async () => {
     try {
       const res = await axios(
@@ -33,7 +35,10 @@ const TechProfile = () => {
     getProfile();
   }, []);
 
-  console.log(data);
+  const handleModel = () => {
+    return setModel(!model);
+  };
+
   return (
     <>
       <div className="gradient-custom-2" style={{ backgroundColor: "#9de2ff" }}>
@@ -134,6 +139,23 @@ const TechProfile = () => {
                         </button>
                       </div>
                     </div>
+                  </div>
+                  <div>
+                    <button
+                      type="button"
+                      className="btn btn-primary h-25"
+                      onClick={handleModel}
+                    >
+                      Book Technician
+                    </button>
+                    {model ? (
+                      <BookingModel
+                        hide={() => setModel(false)}
+                        id={location?.state}
+                      />
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </MDBCardBody>
               </MDBCard>

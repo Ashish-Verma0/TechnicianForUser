@@ -9,11 +9,13 @@ const FetchData = () => {
   const [keyword, setKeyWord] = useState("");
 
   const getData = async () => {
+    console.log(location.state);
     try {
       const res = await axios.get(
         `http://localhost:8500/api/tech/all/tech?keyword=${location.state}`
       );
       setData(res?.data?.data);
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
@@ -23,9 +25,10 @@ const FetchData = () => {
   }, []);
 
   let result = [];
-
   for (let i = 0; i < data.length; i++) {
     let a = data[i].skills[0].split(",");
+    // let a = data[i].skills[0];
+
     if (a.includes(keyword)) {
       result.push(data[i]);
     }
@@ -36,28 +39,29 @@ const FetchData = () => {
   };
   return (
     <>
-      <div
-        className="input-group rounded"
-        style={{
-          width: "70%",
-          margin: "auto",
-          marginTop: "2%",
-          //   height: "100px",
-        }}
-      >
-        <input
-          type="search"
-          className="form-control rounded"
-          placeholder="Search By Requiremwnt"
-          aria-label="Search"
-          aria-describedby="search-addon"
+      <div className="col-12 mt-3">
+        <select
+          className="select form-control-lg w-75 "
+          style={{ display: "flex", margin: "auto" }}
+          id="JobTitle"
+          name="JobTitle"
           value={keyword}
           onChange={(e) => setKeyWord(e.target.value)}
-        />
-        <span className="input-group-text border-0" id="search-addon">
-          <button className="btn btn primary">Search</button>
-        </span>
+        >
+          <option>Search By Requirement</option>
+          <option>Ac Mechanic</option>
+          <option>Cooler Mechanic</option>
+          <option>Plumber </option>
+          <option>Guard </option>
+          <option>Coaching Teacher </option>
+          <option>Cleaning </option>
+          <option>Cooking </option>
+        </select>
+        {/* <label className="form-label select-label ms-3">Select JOBTITLE</label> */}
       </div>
+      {/* <span className="input-group-text border-0" id="search-addon">
+        <button className="btn btn primary">Search</button>
+      </span> */}
       <div
         style={{
           width: "70%",
@@ -80,6 +84,7 @@ const FetchData = () => {
                   key={_id}
                   onClick={() => moveToNext(_id)}
                 >
+                  {/* {!elem ? <p>No Data found</p> : ""} */}
                   <div className="list-item-image">
                     <img src={`http://localhost:8500/${adhar}`} alt="Item" />
                   </div>

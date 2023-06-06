@@ -17,6 +17,7 @@ const Signup = () => {
     phone: "",
     state: "",
     city: "",
+    pinCode: "",
   });
 
   useEffect(() => {
@@ -59,6 +60,7 @@ const Signup = () => {
     myForm.append("phone", data.phone);
     myForm.append("state", data.state);
     myForm.append("city", data.city);
+    myForm.append("pinCode", data.pinCode);
     myForm.append("password", password);
     myForm.append("lat", latitude);
     myForm.append("lng", longitude);
@@ -71,7 +73,7 @@ const Signup = () => {
       );
 
       if (res.data.success === true) {
-        navigate("/login");
+        navigate("/");
         alert("signup successfully");
         setData({
           userName: "",
@@ -79,6 +81,7 @@ const Signup = () => {
           phone: "",
           state: "",
           city: "",
+          pinCode: "",
         });
         setPassword("");
         setValid(false);
@@ -203,6 +206,48 @@ const Signup = () => {
                       </div>
                     </div>
                   </div>
+
+                  <div className="row">
+                    <div className="col-md-6 mb-4">
+                      <div className="form-outline datepicker">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleDatepicker1"
+                          name="pinCode"
+                          value={data.pinCode}
+                          onChange={handleChange}
+                          required
+                        />
+                        <label
+                          htmlFor="exampleDatepicker1"
+                          className="form-label"
+                        >
+                          PinCode/ZipCode
+                        </label>
+                      </div>
+                    </div>
+                    {/* <div className="col-md-6 mb-4">
+                      <div className="form-outline datepicker">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleDatepicker1"
+                          name="state"
+                          value={data.state}
+                          onChange={handleChange}
+                          required
+                        />
+                        <label
+                          htmlFor="exampleDatepicker1"
+                          className="form-label"
+                        >
+                          State
+                        </label>
+                      </div>
+                    </div> */}
+                  </div>
+
                   <div className="row">
                     <div className="col-md-6 mb-4">
                       <div className="form-outline datepicker">
@@ -260,7 +305,7 @@ const Signup = () => {
                 <div>
                   <p>
                     Already have an account :-{" "}
-                    <NavLink to="/login">
+                    <NavLink to="/">
                       <button
                         type="submit"
                         className="btn btn-success btn-lg mb-1"

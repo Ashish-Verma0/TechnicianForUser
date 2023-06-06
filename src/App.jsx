@@ -10,7 +10,7 @@ const App = () => {
   return (
     <Routes>
       {/* <Route exact path="/login" element={<Login />} /> */}
-      <Route exact path="/signin" element={<Signup />} />
+      <Route exact path="/signup" element={<Signup />} />
       <Route exact path="/" element={token?.length ? <Home /> : <Login />} />
       <Route exact path="/requirement" element={<FetchData />} />
       <Route exact path="/tech/profile" element={<TechProfile />} />
